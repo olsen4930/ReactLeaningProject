@@ -1,11 +1,11 @@
 import * as actionTypes from '../actions/actionTypes'
-
+import { updateObject } from "./utility";
 const initialState = {
     result: [],
 }
 
 const reducer = (state = initialState, action) => {
-    
+
     switch (action.type) {
         case actionTypes.ADD_RESULT:
             const tempResult = [...state.result];
@@ -18,22 +18,17 @@ const reducer = (state = initialState, action) => {
             // newArray.splice(action.position,1)
 
             const updatedArray = tempResult.filter((element, index) => {
-                console.log(index !==action.position);
-                
                 return index !== action.position;
             })
 
-            return {
-                result: updatedArray,
-            }
+            return updateObject(state, { result: updatedArray });
+
         case actionTypes.STORE_RESULT:
             // let tempState = { ...state }
             // tempState.result.push(tempState.counter);
 
-            return {
-                counter: 0,
-                result: state.result.concat({value: action.result}),
-            }
+            return updateObject(state,{result: state.result.concat({ value: action.result })})
+
         default:
             return state
     }

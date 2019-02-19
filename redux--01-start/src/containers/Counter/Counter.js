@@ -27,6 +27,7 @@ class Counter extends Component {
                 return;
         }
     }
+    //for commit
 
     render() {
         console.log(this.props);
